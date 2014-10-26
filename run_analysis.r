@@ -102,7 +102,7 @@ generateMean <- function(dataInput)
         {
             df1 <- colMeans(subset(dataInput,dataInput$Subject == s & as.character(dataInput$Activity) == a,c(3:ncol(dataInput))))
             df2 <- data.frame(s,a,names(df1),as.vector(df1))
-            dsAverage <- rbind(df2,df3)
+            dsAverage <- rbind(df2,dsAverage)
         }
     }
     names(dsAverage) <- c("Subject","Activity","Variable","Average")
@@ -111,4 +111,4 @@ generateMean <- function(dataInput)
 
 ds.average<-generateMean(dataRelabeled)
 # write dataset 
-write.table(ds.average[order(ds.average[[1]]),],file="datasetAverage.txt",row.names=FALSE,quote=FALSE,sep="\t",col.names=F)
+write.table(ds.average[order(ds.average[[1]]),],file="datasetAverage.txt",row.names=FALSE,quote=FALSE,sep="\t")
